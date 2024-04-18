@@ -1,6 +1,15 @@
 using UnityEngine;
 
-public class PointClickControler : MonoBehaviour {
+public class Player : MonoBehaviour {
+	public string username = "p0";
+
+	public GameObject appearence;
+	public GameObject nametag;
+
+	private void Start() {
+		nametag.GetComponent<	TextMesh>().text = username;
+	}
+
 	private void Update() {
 		if(Input.GetButtonDown("GoHere")) {
 			Debug.Log("Mouse clicked");
@@ -13,7 +22,7 @@ public class PointClickControler : MonoBehaviour {
 				 GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(newPosition);
 
 				 Vector3 direction = (newPosition - transform.position).normalized;
-				transform.rotation = Quaternion.LookRotation(direction);
+				appearence.rotation = Quaternion.LookRotation(direction);
 			}
 		}
 	}
