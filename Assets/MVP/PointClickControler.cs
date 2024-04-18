@@ -4,10 +4,10 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour {
 	public string username = "p0";
 
-	public GameObject nametag;
+	public TextMesh nametag;
 
 	private void Start() {
-		nametag.GetComponent<TextMesh>().text = username;
+		nametag.text = username;
 	}
 
 	private void Update() {
