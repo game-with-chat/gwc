@@ -13,6 +13,7 @@ public class TestIP : MonoBehaviour
 {
 
 	public string ip = "localhost";
+	public string server = "0.0.0.0";
 	public ushort port = 7770;
 	public bool hostServer = false;
 
@@ -25,7 +26,7 @@ public class TestIP : MonoBehaviour
 		Transport transport = networkManager.TransportManager.Transport;
 		transport.SetClientAddress(ip);
 		transport.SetPort(port);
-		transport.SetServerBindAddress(ip,IPAddressType.IPv4);
+		transport.SetServerBindAddress(server,IPAddressType.IPv4);
 
 		if(hostServer) {
 			networkManager.ServerManager.StartConnection(port);

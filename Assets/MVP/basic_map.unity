@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ip: localhost
+  server: 0.0.0.0
   port: 7770
   hostServer: 0
 --- !u!1660057539 &9223372036854775807
