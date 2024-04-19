@@ -19,8 +19,11 @@
 			packages = with pkgs; [
 				unityhub
 				mono
-				
+				dotnet-sdk
 			];
+			shellHook = ''
+				unityhub
+			'';
 		};
 	};
 }
