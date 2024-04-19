@@ -1,46 +1,47 @@
 name: Build Projects
-run-name: ${{ github.actor }} triggered unity project build
-on: [push, pull_request]
+on:
+ - push
+ - pull_request
+
 jobs:
-	build:
-    name: "Build and Test"
+  build:
 		runs-on: ubuntu-latest
 		steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-        lfs: true
+          lfs: true
 
       # Cache
       - uses: actions/cache@v3
         with:
-        path: Library
-        key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-        restore-keys: |
-          Library-
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
 
       # Test
       - name: Run tests
         uses: game-ci/unity-test-runner@v4
         env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-        githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
         env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-        targetPlatform: StandaloneLinux64
+         targetPlatform: StandaloneLinux64
 
       # Output
       - uses: actions/upload-artifact@v3
         with:
-        name: Build
-        path: build
+          name: Build
+          path: build
