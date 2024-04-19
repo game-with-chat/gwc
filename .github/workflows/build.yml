@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} triggered unity project build
 on: [push, pull_request]
 jobs:
 	build:
+    name: "Build and Test"
 		runs-on: ubuntu-latest
 		steps:
       - name: Checkout repository
