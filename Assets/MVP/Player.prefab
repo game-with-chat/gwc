@@ -78,6 +78,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 3249693130179736243}
+  - {fileID: -2328595969687404552}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField: []
   SerializedTransformProperties:
@@ -176,9 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1806177640827727253}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1806177640827727253}
   _componentConfiguration: 1
   _synchronizeParent: 0
   _packing:
@@ -325,7 +326,7 @@ GameObject:
   - component: {fileID: 502015663276323966}
   - component: {fileID: 1935666338515680283}
   - component: {fileID: 4900361028497637150}
-  - component: {fileID: 1915784005725426826}
+  - component: {fileID: 7614373003989222106}
   m_Layer: 0
   m_Name: username
   m_TagString: Untagged
@@ -412,7 +413,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
---- !u!114 &1915784005725426826
+--- !u!114 &7614373003989222106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
