@@ -38,6 +38,7 @@ public class PointClickControler : MonoBehaviour
 			newPosition.y = transform.position.y; // No Pecking at the ground
 
 			navMesh.SetDestination(newPosition);
+			//transform.position = newPosition;
 
 			Vector3 direction = (newPosition - transform.position).normalized;
 			transform.rotation = Quaternion.LookRotation(direction);
