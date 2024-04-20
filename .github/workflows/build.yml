@@ -122,7 +122,7 @@ jobs:
           path: build/gwc*
 
       - uses: actions/upload-pages-artifact@v2
-        if: ${{ matrix.opt.target }} == 'WebGL'
+        if: matrix.opt.target == 'WebGL'
         with:
           path: "build/gwc"
   gh-pages:
