@@ -108,15 +108,14 @@ jobs:
          targetPlatform: ${{ matrix.opt.target }}
          allowDirtyBuild: true
 
-      # Output
       - uses: actions/upload-artifact@v3
+        if: ! matrix.opt.file
         with:
           name: gwc-${{ matrix.opt.out }}
           path: build
       
-      # Output
       - uses: actions/upload-artifact@v3
-        if: ${{ matrix.opt.file }}
+        if: matrix.opt.file
         with:
           name: gwc-${{ matrix.opt.out }}
           path: build/${{ matrix.opt.target }}/gwc*
@@ -124,7 +123,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v2
         if: matrix.opt.target == 'WebGL'
         with:
-          path: "build/${{ matrix.opt.target }}/gwc*"
+          path: build/${{ matrix.opt.target }}/gwc"
   gh-pages:
     name: GitHub Pages
     #if: github.ref == 'refs/heads/develop'
