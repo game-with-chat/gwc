@@ -124,7 +124,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v2
         if: ${{ matrix.opt.target }} == 'WebGL'
         with:
-          path: "build"
+          path: "build/gwc"
   gh-pages:
     name: GitHub Pages
     #if: github.ref == 'refs/heads/develop'
