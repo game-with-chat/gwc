@@ -33,14 +33,9 @@ jobs:
     strategy:
       matrix:
         os:
+          - 'windows-latest'
+          - 'ubuntu-latest'
           - 'macos-latest'
-          - 'windows-latest'
-          - 'macos-latest'
-          - 'ubuntu-latest'
-          - 'windows-latest'
-          - 'ubuntu-latest'
-          - 'windows-latest'
-          - 'ubuntu-latest'
         target:
           - StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows	#Build a Windows standalone.
