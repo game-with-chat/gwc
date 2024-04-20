@@ -45,7 +45,7 @@ jobs:
             os: windows-latest
           - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
             out: osx
-            os: maxcos-latest
+            os: macos-latest
           - target: iOS	#Build an iOS player.
             out: ios
             os: ubuntu-latest
@@ -70,8 +70,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ matrix.opt.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
+            Library-${{ matrix.opt.target }}-
             Library-
       # Build
       - name: Build project
@@ -81,10 +82,11 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+         buildName: gwc-${{ matrix.opt.out }}
          targetPlatform: ${{ matrix.opt.target }}
 
       # Output
       - uses: actions/upload-artifact@v3
         with:
           name: gwc-${{ matrix.opt.out }}
-          path: build
+          path: build${{ matrix.opt.build }}
