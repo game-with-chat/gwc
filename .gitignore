@@ -75,3 +75,6 @@ crashlytics-build.properties
 # Ignore temporaries from GameCI
 /[Aa]rtifacts/
 /[Cc]odeCoverage/
+
+# mono crash reports
+mono_crash*
