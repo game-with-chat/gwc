@@ -32,15 +32,23 @@ jobs:
   build:
     strategy:
       matrix:
-        target:
-          - StandaloneLinux64	#Build a Linux 64-bit standalone.
-          - StandaloneWindows64	#Build a Windows 64-bit standalone.
-          - StandaloneWindows	#Build a Windows standalone.
-          - StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
-          - iOS	#Build an iOS player.
-          - Android	#Build an Android .apk standalone app.
-          - WebGL	#Build to WebGL platform.
-          - WSAPlayer	#Build an Windows Store Apps player.
+        opt:
+          - target: StandaloneLinux64	#Build a Linux 64-bit standalone.
+            out: linux
+          - target: StandaloneWindows64	#Build a Windows 64-bit standalone.
+            out: x64-win
+          - target: StandaloneWindows	#Build a Windows standalone.
+            out: x86-win
+          - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
+            out: osx
+          - target: iOS	#Build an iOS player.
+            out: ios
+          - target: Android	#Build an Android .apk standalone app.
+            out: android
+          - target: WebGL	#Build to WebGL platform.
+            out: webgl
+          - target: WSAPlayer	#Build an Windows Store Apps player.
+            out: uwp
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -63,10 +71,10 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-         targetPlatform: ${{ matrix.target }}
+         targetPlatform: ${{ matrix.opt.target }}
 
       # Output
       - uses: actions/upload-artifact@v3
         with:
-          name: gwc-${{ matrix.target }}
+          name: gwc-${{ matrix.opt.out }}
           path: build
