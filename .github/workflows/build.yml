@@ -35,16 +35,16 @@ jobs:
         os:
           - 'windows-latest'
           - 'ubuntu-latest'
-          - 'macos-latest'
+          #- 'macos-latest'
         target:
-          - StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows	#Build a Windows standalone.
-          - iOS	#Build an iOS player.
-          - Android	#Build an Android .apk standalone app.
-          - StandaloneWindows64	#Build a Windows 64-bit standalone.
-          - WebGL	#Build to WebGL platform.
-          - WSAPlayer	#Build an Windows Store Apps player.
           - StandaloneLinux64	#Build a Linux 64-bit standalone.
+          - StandaloneWindows64	#Build a Windows 64-bit standalone.
+          - StandaloneWindows	#Build a Windows standalone.
+          #- StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
+          #- iOS	#Build an iOS player.
+          #- Android	#Build an Android .apk standalone app.
+          #- WebGL	#Build to WebGL platform.
+          #- WSAPlayer	#Build an Windows Store Apps player.
     runs-on: ${{matrix.os}}
     steps:
       - name: Checkout repository
