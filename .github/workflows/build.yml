@@ -111,13 +111,13 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: ! matrix.opt.file
         with:
-          name: gwc-${{ matrix.opt.out }}
+          name: ${{ matrix.opt.target }}
           path: build
       
       - uses: actions/upload-artifact@v3
         if: matrix.opt.file
         with:
-          name: gwc-${{ matrix.opt.out }}
+          name: ${{ matrix.opt.target }}
           path: build/${{ matrix.opt.target }}/gwc*
 
       - uses: actions/upload-pages-artifact@v2
