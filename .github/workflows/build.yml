@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    if: false
+    # if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,7 +23,7 @@ jobs:
 
       # Test
       - name: Run tests
-        uses: game-ci/unity-test-runner@v4.1.1
+        uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -46,15 +46,19 @@ jobs:
           - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
             out: osx
             os: macos-latest
+            file: true
           - target: iOS	#Build an iOS player.
             out: ios
             os: ubuntu-latest
+            file: true
           - target: Android	#Build an Android .apk standalone app.
             out: android
             os: ubuntu-latest
+            file: true
           - target: WebGL	#Build to WebGL platform.
             out: webgl
             os: ubuntu-latest
+            file: true
           # - target: WSAPlayer	#Build an Windows Store Apps player.
           #   out: uwp
           #   os: windows-latest
@@ -82,11 +86,19 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-         buildName: gwc-${{ matrix.opt.out }}
+         buildName: gwc
          targetPlatform: ${{ matrix.opt.target }}
+         allowDirtyBuild: true
 
       # Output
       - uses: actions/upload-artifact@v3
         with:
           name: gwc-${{ matrix.opt.out }}
-          path: build${{ matrix.opt.build }}
+          path: build
+      
+      # Output
+      - uses: actions/upload-artifact@v3
+        if: ${{ matrix.opt.file }}
+        with:
+          name: gwc-${{ matrix.opt.out }}
+          path: build/gwc*
