@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 3277288813791122805}
   - component: {fileID: 3054710909118210249}
   m_Layer: 5
-  m_Name: Text
+  m_Name: nicknameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 1139415742377576868}
   - component: {fileID: 4796577409866553939}
   m_Layer: 5
-  m_Name: Text
+  m_Name: portText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -777,10 +777,10 @@ RectTransform:
   - {fileID: 4035307955777473422}
   m_Father: {fileID: 8942289479729266694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 310.98, y: -79.95}
+  m_SizeDelta: {x: 214.85, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2863236448150635143
 CanvasRenderer:
@@ -863,7 +863,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2988568467696285549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6188590648351220907}
+        m_TargetAssemblyTypeName: TestIP, Assembly-CSharp
+        m_MethodName: Click_Host
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3044075135051096832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1148,7 @@ GameObject:
   - component: {fileID: 3694330208444603020}
   - component: {fileID: 5285629147234257516}
   m_Layer: 5
-  m_Name: Text
+  m_Name: addressText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,10 +1486,10 @@ RectTransform:
   - {fileID: 5300702066842058524}
   m_Father: {fileID: 8942289479729266694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 354.74808, y: -26.65}
+  m_SizeDelta: {x: 127.3046, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3373228673863607322
 CanvasRenderer:
@@ -1868,6 +1880,7 @@ GameObject:
   - component: {fileID: 1664930893389121873}
   - component: {fileID: 6711751497762677466}
   - component: {fileID: 841471705336578283}
+  - component: {fileID: 3554405604995294527}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -1993,6 +2006,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3554405604995294527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053878765961338174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2806b384e84ad04319306ddb0e7a6ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5174183506080418193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8942289479729266694}
   - component: {fileID: 8537512350981041917}
-  - component: {fileID: 6211959710867739457}
+  - component: {fileID: 273924606112309684}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -2240,7 +2265,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6211959710867739457
+--- !u!114 &273924606112309684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,21 +2274,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6524632431417458219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 209.2, y: 53.3}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 2
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 0
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &7144903232643792112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,10 +2319,10 @@ RectTransform:
   - {fileID: 185292454665854895}
   m_Father: {fileID: 8942289479729266694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 101.77579, y: -79.95}
+  m_SizeDelta: {x: 203.5525, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8901732133727670219
 CanvasRenderer:
@@ -2384,7 +2405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 111879449819885636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6188590648351220907}
+        m_TargetAssemblyTypeName: TestIP, Assembly-CSharp
+        m_MethodName: Click_Join
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7152875330336193820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,10 +3027,10 @@ RectTransform:
   - {fileID: 7083094516163433583}
   m_Father: {fileID: 8942289479729266694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 145.55, y: -26.65}
+  m_SizeDelta: {x: 291.1, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1918659453223305151
 CanvasRenderer:
@@ -3364,7 +3397,7 @@ PrefabInstance:
       addedObject: {fileID: 4078416891669517696}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7443408887813606051, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 6188590648351220907}
   m_SourcePrefab: {fileID: 100100000, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
 --- !u!4 &8702120239608761141 stripped
@@ -3392,4 +3425,7 @@ MonoBehaviour:
   ip: localhost
   server: 0.0.0.0
   port: 7770
-  hostServer: 0
+  nicknameField: {fileID: 4496671678139964673}
+  addressField: {fileID: 1191220865847113913}
+  portField: {fileID: 6891031707532959369}
+  canvas: {fileID: 8735270715420775599}

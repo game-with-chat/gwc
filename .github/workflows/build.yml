@@ -119,12 +119,12 @@ jobs:
         if: ${{ matrix.opt.file }}
         with:
           name: gwc-${{ matrix.opt.out }}
-          path: build/gwc*
+          path: build/${{ matrix.opt.target }}/gwc*
 
       - uses: actions/upload-pages-artifact@v2
         if: matrix.opt.target == 'WebGL'
         with:
-          path: "build"
+          path: "build/${{ matrix.opt.target }}/gwc*"
   gh-pages:
     name: GitHub Pages
     #if: github.ref == 'refs/heads/develop'
