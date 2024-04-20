@@ -39,22 +39,22 @@ jobs:
             os: ubuntu-latest
           - target: StandaloneWindows64	#Build a Windows 64-bit standalone.
             out: x64-win
-            os: ubuntu-latest
+            os: windows-latest
           - target: StandaloneWindows	#Build a Windows standalone.
             out: x86-win
-            os: ubuntu-latest
+            os: windows-latest
           - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
             out: osx
-            os: ubuntu-latest
+            os: maxcos-latest
           - target: iOS	#Build an iOS player.
             out: ios
             os: ubuntu-latest
-          # - target: Android	#Build an Android .apk standalone app.
-          #   out: android
-          #   os: ubuntu-latest
-          # - target: WebGL	#Build to WebGL platform.
-          #   out: webgl
-          #   os: ubuntu-latest
+          - target: Android	#Build an Android .apk standalone app.
+            out: android
+            os: ubuntu-latest
+          - target: WebGL	#Build to WebGL platform.
+            out: webgl
+            os: ubuntu-latest
           # - target: WSAPlayer	#Build an Windows Store Apps player.
           #   out: uwp
           #   os: windows-latest
