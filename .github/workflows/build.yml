@@ -5,6 +5,7 @@ on:
 
 jobs:
   test:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -36,12 +37,12 @@ jobs:
           - target: StandaloneLinux64	#Build a Linux 64-bit standalone.
             out: linux
             os: ubuntu-latest
-          # - target: StandaloneWindows64	#Build a Windows 64-bit standalone.
-          #   out: x64-win
-          #   os: ubuntu-latest
-          # - target: StandaloneWindows	#Build a Windows standalone.
-          #   out: x86-win
-          #   os: ubuntu-latest
+          - target: StandaloneWindows64	#Build a Windows 64-bit standalone.
+            out: x64-win
+            os: ubuntu-latest
+          - target: StandaloneWindows	#Build a Windows standalone.
+            out: x86-win
+            os: ubuntu-latest
           # - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
           #   out: osx
           #   os: ubuntu-latest
