@@ -4,48 +4,44 @@ on:
  - pull_request
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-  #       with:
-  #         lfs: true
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
 
-  #     # Cache
-  #     - uses: actions/cache@v3
-  #       with:
-  #         path: Library
-  #         key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-  #         restore-keys: |
-  #           Library-
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
 
-  #     # Test
-  #     - name: Run tests
-  #       uses: game-ci/unity-test-runner@v4.1.1
-  #       env:
-  #         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  #         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-  #         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-  #       with:
-  #         githubToken: ${{ secrets.GITHUB_TOKEN }}
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v4.1.1
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
   build:
     strategy:
       matrix:
-        os:
-          #- 'windows-latest'
-          - 'ubuntu-latest'
-          #- 'macos-latest'
         target:
           - StandaloneLinux64	#Build a Linux 64-bit standalone.
-          #- StandaloneWindows64	#Build a Windows 64-bit standalone.
-          #- StandaloneWindows	#Build a Windows standalone.
-          #- StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
-          #- iOS	#Build an iOS player.
-          #- Android	#Build an Android .apk standalone app.
-          #- WebGL	#Build to WebGL platform.
-          #- WSAPlayer	#Build an Windows Store Apps player.
-    runs-on: ${{matrix.os}}
+          - StandaloneWindows64	#Build a Windows 64-bit standalone.
+          - StandaloneWindows	#Build a Windows standalone.
+          - StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
+          - iOS	#Build an iOS player.
+          - Android	#Build an Android .apk standalone app.
+          - WebGL	#Build to WebGL platform.
+          - WSAPlayer	#Build an Windows Store Apps player.
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
