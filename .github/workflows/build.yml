@@ -5,7 +5,8 @@ on:
 
 jobs:
   test:
-    # if: false
+    permissions:
+      checks: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
