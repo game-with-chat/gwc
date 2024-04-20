@@ -109,7 +109,7 @@ jobs:
          allowDirtyBuild: true
 
       - uses: actions/upload-artifact@v3
-        if: ! matrix.opt.file
+        if: ${{ ! matrix.opt.file }}
         with:
           name: ${{ matrix.opt.target }}
           path: build
