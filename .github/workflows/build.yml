@@ -33,13 +33,13 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'windows-latest'
+          #- 'windows-latest'
           - 'ubuntu-latest'
           #- 'macos-latest'
         target:
           - StandaloneLinux64	#Build a Linux 64-bit standalone.
-          - StandaloneWindows64	#Build a Windows 64-bit standalone.
-          - StandaloneWindows	#Build a Windows standalone.
+          #- StandaloneWindows64	#Build a Windows 64-bit standalone.
+          #- StandaloneWindows	#Build a Windows standalone.
           #- StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
           #- iOS	#Build an iOS player.
           #- Android	#Build an Android .apk standalone app.
