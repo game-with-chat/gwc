@@ -58,7 +58,7 @@ jobs:
           # - target: WSAPlayer	#Build an Windows Store Apps player.
           #   out: uwp
           #   os: windows-latest
-    name: ${{ matrix.opt.otarget }}
+    name: ${{ matrix.opt.target }}
     runs-on: ${{ matrix.opt.os }}
     steps:
       - name: Checkout repository
