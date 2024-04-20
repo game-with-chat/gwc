@@ -120,3 +120,23 @@ jobs:
         with:
           name: gwc-${{ matrix.opt.out }}
           path: build/gwc*
+
+      - uses: actions/upload-pages-artifact@v2
+        if: ${{ matrix.opt.target }} == 'WebGL'
+        with:
+          path: "build"
+  gh-pages:
+    name: GitHub Pages
+    #if: github.ref == 'refs/heads/develop'
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v2
