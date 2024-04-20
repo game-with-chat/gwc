@@ -43,9 +43,9 @@ jobs:
           - target: StandaloneWindows	#Build a Windows standalone.
             out: x86-win
             os: ubuntu-latest
-          # - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
-          #   out: osx
-          #   os: ubuntu-latest
+          - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
+            out: osx
+            os: ubuntu-latest
           # - target: iOS	#Build an iOS player.
           #   out: ios
           #   os: ubuntu-latest
