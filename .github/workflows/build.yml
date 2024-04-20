@@ -4,8 +4,53 @@ on:
  - pull_request
 
 jobs:
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
+
+  #     # Cache
+  #     - uses: actions/cache@v3
+  #       with:
+  #         path: Library
+  #         key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+  #         restore-keys: |
+  #           Library-
+
+  #     # Test
+  #     - name: Run tests
+  #       uses: game-ci/unity-test-runner@v4.1.1
+  #       env:
+  #         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  #         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  #         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+  #       with:
+  #         githubToken: ${{ secrets.GITHUB_TOKEN }}
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - 'macos-latest'
+          - 'windows-latest'
+          - 'macos-latest'
+          - 'ubuntu-latest'
+          - 'windows-latest'
+          - 'ubuntu-latest'
+          - 'windows-latest'
+          - 'ubuntu-latest'
+        target:
+          - StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows	#Build a Windows standalone.
+          - iOS	#Build an iOS player.
+          - Android	#Build an Android .apk standalone app.
+          - StandaloneWindows64	#Build a Windows 64-bit standalone.
+          - WebGL	#Build to WebGL platform.
+          - WSAPlayer	#Build an Windows Store Apps player.
+          - StandaloneLinux64	#Build a Linux 64-bit standalone.
+    runs-on: ${{matrix.os}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,36 +64,18 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-
-      # Activate
-      # - uses: game-ci/unity-activate@v2.0.0
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v4.1.1
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+         targetPlatform: ${{ matrix.target }}
 
-      # Build
-      # - name: Build project
-      #   uses: game-ci/unity-builder@v4
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      #   with:
-      #    targetPlatform: StandaloneLinux64
-
-      # # Output
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Build
-      #     path: build
+      # Output
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gwc-${{ matrix.target }}
+          path: build
