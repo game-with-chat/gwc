@@ -23,8 +23,8 @@ jobs:
         if: matrix.target != 'StandaloneOSX'
         with:
           tool-cache: false
-          android: true
-          dotnet: true
+          android: false
+          dotnet: false
           haskell: true
           large-packages: true
           docker-images: true
