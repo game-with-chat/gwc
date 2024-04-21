@@ -16,7 +16,7 @@ jobs:
           - WebGL
           # - WSAPlayer
     name: ${{ matrix.target }}
-    runs-on: ${{ matrix.target != 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.target == 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
     steps:
       - name: Clean the VM
         uses: jlumbroso/free-disk-space@main
