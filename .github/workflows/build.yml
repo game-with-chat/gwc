@@ -40,9 +40,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ matrix.opt.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ matrix.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-${{ matrix.opt.target }}-
+            Library-${{ matrix.target }}-
             Library-
       # Build
       - name: Build project
@@ -56,7 +56,7 @@ jobs:
          targetPlatform: ${{ matrix.target }}
          allowDirtyBuild: true
 
-      - uses: ${{ matrix.target == 'WebGL' && 'actions/upload-pages-artifact@v2' || 'actions/upload-artifact@v4' }}
+      - uses: ${{ matrix.target == 'WebGL' && actions/upload-pages-artifact@v2 || actions/upload-artifact@v4 }}
         with:
           path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk' || matrix.target == 'StandaloneOSX' && '/gwc.app' || matrix.target == 'WebGL' && '/gwc' }}
   gh-pages:
