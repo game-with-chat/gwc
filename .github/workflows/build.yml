@@ -44,15 +44,15 @@ jobs:
             os: ubuntu-latest
           - target: StandaloneWindows	#Build a Windows standalone.
             out: x86-win
-            os: ubunto-latest
+            os: ubuntu-latest
           - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
             out: osx
             os: macos-latest
             file: true
-          - target: iOS	#Build an iOS player.
-            out: ios
-            os: ubuntu-latest
-            file: true
+          # - target: iOS	#Build an iOS player.
+          #   out: ios
+          #   os: ubuntu-latest
+          #   file: true
           - target: Android	#Build an Android .apk standalone app.
             out: android
             os: ubuntu-latest
