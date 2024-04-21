@@ -16,11 +16,11 @@ jobs:
           - WebGL
           # - WSAPlayer
     name: ${{ matrix.target }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.target != 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
     steps:
       - name: Clean the VM
         uses: jlumbroso/free-disk-space@main
-        if: runner.os == 'ubuntu-latest'
+        if: matrix.target != 'StandaloneOSX'
         with:
           tool-cache: false
           android: true
