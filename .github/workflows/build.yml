@@ -58,7 +58,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         name: "Upload ${{ matrix.target == 'Android' && 'Android Package (.apk)' || matrix.target == 'StandaloneOSX' && 'Bundle (.app)' || matrix.target == 'WebGL' && 'Web Client Archive' || 'Executable' }}"
-        if: matrix.target != 'WebGL'
+        if: matrix.target != 'WebGL' || github.ref != 'refs/heads/develop'
         id: upload
         with:
           name: ${{matrix.target}}
@@ -71,7 +71,7 @@ jobs:
           path: "build/WebGL/gwc"
   gh-pages:
     name: GitHub Pages
-    #if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/develop'
     needs: build
     permissions:
       pages: write
