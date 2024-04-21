@@ -64,6 +64,7 @@ jobs:
           path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk' || matrix.target == 'StandaloneOSX' && '/gwc.app' || matrix.target == 'WebGL' && '/gwc' }}
 
       - uses: actions/upload-pages-artifact@v3
+      name: "${{ matrix.target == 'WebGL' && 'Upload GitHub Pages Artifact' || '(n/a)' }}"
         if: matrix.target == 'WebGL'
         with:
           path: build/WebGL/gwc
