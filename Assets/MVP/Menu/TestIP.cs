@@ -18,6 +18,7 @@ public class TestIP : MonoBehaviour
 
 #region GameObjects
 	public TMP_InputField nicknameField, addressField, portField;
+	public Button hostButton;
 	public Canvas canvas;
 	private NetworkManager networkManager;
 	private Transport transport;
@@ -35,6 +36,11 @@ public class TestIP : MonoBehaviour
 		transport.SetServerBindAddress(server,IPAddressType.IPv4);
 		addressField.text = ip;
 		portField.text = port.ToString();
+
+
+		#if UNITY_WEBGL
+		hostButton.gameObject.SetActive(false);
+		#endif
 
     }
 
