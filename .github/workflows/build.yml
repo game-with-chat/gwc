@@ -61,6 +61,7 @@ jobs:
         if: matrix.target != 'WebGL'
         id: upload
         with:
+          name: ${{matrix.target}}
           path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk' || matrix.target == 'StandaloneOSX' && '/gwc.app' || matrix.target == 'WebGL' && '/gwc' || '' }}
 
       - uses: actions/upload-pages-artifact@v3
