@@ -656,7 +656,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   scriptingDefineSymbols:
     Standalone: FISHNET;FISHNET_V4
-    WebGL: FISHNET;FISHNET_V4
+    WebGL: FISHNET;FISHNET_V4;PREDICTION_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

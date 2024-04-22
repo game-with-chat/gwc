@@ -1,18 +1,40 @@
 using UnityEngine;
+using FishNet.Object;
+using FishNet.Component.Transforming;
+using System;
 
-
-[RequireComponent(typeof(NetworkPlayer))]
 [RequireComponent(typeof(PointClickControler))]
-public class Player : MonoBehaviour {
-	public string username = "p0";
-	public TextMesh nametag;
-	private NetworkPlayer networkPlayer;
-	private PointClickControler controller;
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(NetworkTransform))]
+public class Player : NetworkBehaviour  {
 
+	[SerializeField]
+	private TextMesh usernameText;
 
-	private void Start() {
-		nametag.text = username;
-		networkPlayer = GetComponent<NetworkPlayer>();
-		controller = GetComponent<PointClickControler>();
+	private void UpdateUsername() {
+		usernameText.text = UsernameManager.GetUsername(base.OwnerId);
 	}
+	private void OnUsernameChange(int id, string username)
+	{
+		if(id==base.OwnerId) {
+			UpdateUsername();
+		}
+	}
+
+	public override void OnStartClient()
+	{
+		base.OnStartClient();
+		GetComponent<PointClickControler>().enabled = base.IsOwner;
+		UpdateUsername();
+		UsernameManager.OnUsernameChange += OnUsernameChange;
+	}
+
+
+	public override void OnStopClient()
+	{
+		base.OnStopClient();
+		UsernameManager.OnUsernameChange -= OnUsernameChange;
+	}
+
+
 }

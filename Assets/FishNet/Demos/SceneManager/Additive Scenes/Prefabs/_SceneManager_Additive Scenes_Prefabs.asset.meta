@@ -6,3 +6,11 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 207815
+  packageName: 'Fish-Net: Networking Evolved'
+  packageVersion: 4.1.6R
+  assetPath: Assets/FishNet/Demos/SceneManager/Additive Scenes/Prefabs/_SceneManager_Additive
+    Scenes_Prefabs.asset
+  uploadId: 654179
