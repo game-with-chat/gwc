@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
 	[SerializeField]
 	private Button hostButton;
 	[SerializeField]
-	private Canvas canvas;
+	private Canvas menu,gameInterface;
 	private NetworkManager networkManager;
 	private Multipass multipass;
 
@@ -57,6 +57,8 @@ public class MainMenu : MonoBehaviour
 		UsernameManager.OnReady += SetUsername;
 
 
+		gameInterface.enabled = false;
+
     }
 
 	private void SetUsername()
@@ -69,11 +71,13 @@ public class MainMenu : MonoBehaviour
 		switch (args.ConnectionState)
 		{
 			case LocalConnectionState.Stopped:
-				canvas.enabled = true;
+				menu.enabled = true;
+				gameInterface.enabled = false;
 				Debug.Log("CLIENT HAS DISCONNECTED");
 			break;
 			case LocalConnectionState.Started:
-				canvas.enabled = false;
+				menu.enabled = false;
+				gameInterface.enabled = true;
 				Debug.Log("CLIENT HAS CONNECTED");
 			break;
 		}
