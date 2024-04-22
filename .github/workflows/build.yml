@@ -1,81 +1,28 @@
 name: Build Projects
 on:
  - push
- - pull_request
 
 jobs:
-  test:
-    name: Run tests
-    permissions:
-      checks: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-
-      # Cache
-      - uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
   build:
     strategy:
       matrix:
-        opt:
-          - target: StandaloneLinux64	#Build a Linux 64-bit standalone.
-            out: linux
-            os: ubuntu-latest
-          - target: StandaloneWindows64	#Build a Windows 64-bit standalone.
-            out: x64-win
-            os: windows-latest
-          - target: StandaloneWindows	#Build a Windows standalone.
-            out: x86-win
-            os: windows-latest
-          - target: StandaloneOSX	#Build a macOS standalone (Intel 64-bit).
-            out: osx
-            os: macos-latest
-            file: true
-          - target: iOS	#Build an iOS player.
-            out: ios
-            os: ubuntu-latest
-            file: true
-          - target: Android	#Build an Android .apk standalone app.
-            out: android
-            os: ubuntu-latest
-            file: true
-          - target: WebGL	#Build to WebGL platform.
-            out: webgl
-            os: ubuntu-latest
-            file: true
-          # - target: WSAPlayer	#Build an Windows Store Apps player.
-          #   out: uwp
-          #   os: windows-latest
-    name: ${{ matrix.opt.target }}
-    runs-on: ${{ matrix.opt.os }}
+        target:
+          - StandaloneLinux64
+          - StandaloneWindows64
+          -  StandaloneWindows
+          -  StandaloneOSX
+          # - iOS
+          - Android
+          - WebGL
+          # - WSAPlayer
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.target == 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
     steps:
-      - uses: jlumbroso/free-disk-space@main
-        if: matrix.opt.os == 'ubuntu-latest'
+      - name: Clean the VM
+        uses: jlumbroso/free-disk-space@main
+        if: matrix.target != 'StandaloneOSX'
         with:
-          # this might remove tools that are actually needed,
-          # if set to "true" but frees about 6 GB
           tool-cache: false
-          
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
           android: false
           dotnet: false
           haskell: true
@@ -89,12 +36,13 @@ jobs:
           lfs: true
 
       # Cache
-      - uses: actions/cache@v3
+      - name: Import from Cache
+        uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ matrix.opt.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ matrix.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-${{ matrix.opt.target }}-
+            Library-${{ matrix.target }}-
             Library-
       # Build
       - name: Build project
@@ -105,18 +53,34 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
          buildName: gwc
-         targetPlatform: ${{ matrix.opt.target }}
+         targetPlatform: ${{ matrix.target }}
          allowDirtyBuild: true
 
-      # Output
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
+        name: "Upload ${{ matrix.target == 'Android' && 'Android Package (.apk)' || matrix.target == 'StandaloneOSX' && 'Bundle (.app)' || matrix.target == 'WebGL' && 'Web Client Archive' || 'Executable' }}"
+        if: matrix.target != 'WebGL' || github.ref != 'refs/heads/develop'
+        id: upload
         with:
-          name: gwc-${{ matrix.opt.out }}
-          path: build
-      
-      # Output
-      - uses: actions/upload-artifact@v3
-        if: ${{ matrix.opt.file }}
+          name: ${{matrix.target}}
+          path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk'  || matrix.target == 'WebGL' && '/gwc' || '' }}
+
+      - uses: actions/upload-pages-artifact@v2
+        name: "${{ matrix.target == 'WebGL' && 'Upload GitHub Pages Artifact' || '(n/a)' }}"
+        if: matrix.target == 'WebGL'
         with:
-          name: gwc-${{ matrix.opt.out }}
-          path: build/gwc*
+          path: "build/WebGL/gwc"
+  gh-pages:
+    name: GitHub Pages
+    if: github.ref == 'refs/heads/develop'
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v2

@@ -51,6 +51,8 @@ namespace FishNet.Connection
         /// NetworkManager managing this class.
         /// </summary>
         public NetworkManager NetworkManager { get; private set; }
+
+		public const int MAXIMUM_CLIENTID_VALUE = (int.MaxValue - 1);
         /// <summary>
         /// True if connection has loaded start scenes. Available to this connection and server.
         /// </summary>

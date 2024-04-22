@@ -1,6 +1,11 @@
 # Getting Started
 ## Windows
-> TBA
+1 have unity and unity hub installed
+2 clone the repo to your laptop or pc
+3 inside unity hub locate where u just cloned the project to
+4 select it
+5 open it from unity hub since itll now display there
+6 hey presto your on your way
 
 ## Nix Os
 1. install vs code https://nixos.wiki/wiki/Visual_Studio_Code=
