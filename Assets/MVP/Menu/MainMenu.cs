@@ -13,16 +13,22 @@ public class MainMenu : MonoBehaviour
 {
 	#region Defaults
 
-	public string username = "p0";
-	public string ip = "localhost",
-	server = "0.0.0.0";
-	public ushort port = 7770;
+	[SerializeField]
+	private string username = "p0",ip = "localhost", serverBind = "0.0.0.0";
+
+	[SerializeField]
+	private ushort port = 7770;
 	#endregion
 
 #region GameObjects
-	public TMP_InputField nicknameField, addressField, portField;
-	public Button hostButton;
-	public Canvas canvas;
+	[SerializeField]
+	public Toggle sslToggle;
+	[SerializeField]
+	private  TMP_InputField nicknameField, addressField, portField;
+	[SerializeField]
+	private Button hostButton;
+	[SerializeField]
+	private Canvas canvas;
 	private NetworkManager networkManager;
 	private Multipass multipass;
 
@@ -40,13 +46,9 @@ public class MainMenu : MonoBehaviour
 		hostButton.gameObject.SetActive(false);
 		#else
 		multipass.SetClientTransport<Tugboat>();
+		sslToggle.gameObject.SetActive(false);
 		#endif
 
-		//multipass = (Multipass) networkManager.TransportManager.Transport;
-		// transport.SetClientAddress(ip);
-		// transport.SetPort(port,0);
-		// transport.SetPort(port,1);
-		// transport.SetServerBindAddress(server,IPAddressType.IPv4);
 		addressField.text = ip;
 		portField.text = port.ToString();
 
@@ -100,6 +102,10 @@ public class MainMenu : MonoBehaviour
 	public void Click_Join(){
 		GatherFieldInfo();
 		multipass.SetClientAddress(ip);
+		#if UNITY_WEBGL && !UNITY_EDITOR
+			Bayou bayou = GetComponent<Bayou>();
+			bayou.SetUseWSS(sslToggle.isOn);
+		#endif
 		for (int i = 0; i < multipass.Transports.Count; i++)
 		{
 			multipass.SetPort(port,i);
@@ -112,7 +118,7 @@ public class MainMenu : MonoBehaviour
 		for (int i = 0; i < multipass.Transports.Count; i++)
 		{
 			multipass.SetPort(port,i);
-			multipass.SetServerBindAddress(server,IPAddressType.IPv4,i);
+			multipass.SetServerBindAddress(serverBind,IPAddressType.IPv4,i);
 		}
 		networkManager.ServerManager.StartConnection();
 	}
