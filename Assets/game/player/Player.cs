@@ -15,8 +15,9 @@ public class Player : NetworkBehaviour  {
 
 
 	private void UpdateUsername() {
-		usernameText.text = UsernameManager.GetUsername(base.OwnerId);
-		gameObject.name = usernameText.text;
+		string username = UsernameManager.GetUsername(base.OwnerId);
+		usernameText.SetText(username);
+		gameObject.name = "player_"+username;
 	}
 	private void OnUsernameChange(int id, string username)
 	{
