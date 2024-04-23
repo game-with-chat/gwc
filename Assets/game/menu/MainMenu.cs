@@ -54,15 +54,19 @@ public class MainMenu : MonoBehaviour
 
 		networkManager.ClientManager.OnClientConnectionState += OnClientState;
 		networkManager.ServerManager.OnServerConnectionState += OnServerState;
+
+
 		UsernameManager.OnReady += SetUsername;
 
 
+		menu.enabled = true;
 		gameInterface.enabled = false;
 
     }
 
 	private void SetUsername()
 	{
+		Debug.Log("Event Called");
 		UsernameManager.SetUsername(username);
 	}
 
@@ -79,6 +83,8 @@ public class MainMenu : MonoBehaviour
 				menu.enabled = false;
 				gameInterface.enabled = true;
 				Debug.Log("CLIENT HAS CONNECTED");
+				// SetUsername();
+				
 			break;
 		}
 	}

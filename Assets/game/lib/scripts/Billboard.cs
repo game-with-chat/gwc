@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlwaysFaceCamera : MonoBehaviour
+public class Billboard : MonoBehaviour
 {
 	public bool reverse = false;
 	public bool stayUpright = false;

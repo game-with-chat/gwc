@@ -6,6 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MVP/basic_map.unity
+    path: Assets/game/rooms/dev1/dev1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/game/rooms/dev2/dev2.unity
+    guid: 8daa01c52b355bb0abdf74c750cf819f
+  - enabled: 1
+    path: Assets/game/rooms/dev3/dev3.unity
+    guid: 084cb3c4b9d44935c86ecfc81875186c
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

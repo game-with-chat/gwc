@@ -12,6 +12,7 @@ public class UsernameManager : NetworkBehaviour {
 	private readonly SyncDictionary<int, string> usernames = new SyncDictionary<int, string>();
 	private static UsernameManager usernameManager;
 
+
 	private void Awake() {
 		usernameManager = this;
 		usernames.OnChange += InvokeUsernameChange;
@@ -22,6 +23,10 @@ public class UsernameManager : NetworkBehaviour {
 		base.OnStartClient();
 		OnReady?.Invoke();
 	}
+
+	// private void OnEnable() {
+	// 	OnReady?.Invoke();		
+	// }
 
 	private void InvokeUsernameChange(SyncDictionaryOperation op, int key, string value, bool asServer)
 	{
