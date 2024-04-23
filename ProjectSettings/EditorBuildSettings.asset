@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MVP/basic_map.unity
+    path: Assets/MVP/basic_map/basic_map.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/MVP/room2/room2.unity
+    guid: d9feeb0176e33c93d9d8a0ddbee7e6ae
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
