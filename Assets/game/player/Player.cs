@@ -2,6 +2,8 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Component.Transforming;
 using System;
+using TMPro;
+using FishNet.Connection;
 
 [RequireComponent(typeof(PointClickControler))]
 [RequireComponent(typeof(CharacterController))]
@@ -9,10 +11,13 @@ using System;
 public class Player : NetworkBehaviour  {
 
 	[SerializeField]
-	private TextMesh usernameText;
+	private TextMeshProUGUI usernameText;
+
 
 	private void UpdateUsername() {
-		usernameText.text = UsernameManager.GetUsername(base.OwnerId);
+		string username = UsernameManager.GetUsername(base.OwnerId);
+		usernameText.SetText(username);
+		gameObject.name = "player_"+username;
 	}
 	private void OnUsernameChange(int id, string username)
 	{
@@ -25,6 +30,7 @@ public class Player : NetworkBehaviour  {
 	{
 		base.OnStartClient();
 		GetComponent<PointClickControler>().enabled = base.IsOwner;
+		GetComponent<AudioListener>().enabled = base.IsOwner;
 		UpdateUsername();
 		UsernameManager.OnUsernameChange += OnUsernameChange;
 	}

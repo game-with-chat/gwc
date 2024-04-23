@@ -71,13 +71,6 @@ jobs:
         with:
           path: "build/WebGL/gwc"
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "GWC"
-          files: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk'  || matrix.target == 'WebGL' && '/gwc' || '' }}
 
   gh-pages:
     name: GitHub Pages
