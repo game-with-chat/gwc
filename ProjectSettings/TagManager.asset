@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - room_origin
+  - World
   layers:
   - Default
   - TransparentFX

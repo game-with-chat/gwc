@@ -1,16 +1,27 @@
 
 
+using System.Collections.Generic;
 using FishNet;
 using FishNet.Managing.Scened;
 using FishNet.Object;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trigger : MonoBehaviour
 {
 
 	[SerializeField]
 	private string sceneName;
+
+
+	private enum TriggerType:byte
+	{
+		Room,
+		Minigame
+	};
+
+	[SerializeField]
+	private TriggerType type;
 
 	[Server]
 	private void OnTriggerEnter(Collider other) {
@@ -22,11 +33,24 @@ public class Trigger : MonoBehaviour
 
 
 
-	private void JoinRoom(NetworkObject networkObject,string sceneName) {
+	private void LoadScene(NetworkObject networkObject,string sceneName) {
 		if(!networkObject.Owner.IsActive) return;
 		SceneLoadData loadData = new SceneLoadData(sceneName);
-		loadData.MovedNetworkObjects = new NetworkObject[] {networkObject};
-		loadData.ReplaceScenes = ReplaceOption.OnlineOnly;
+		switch (type)
+		{
+			case TriggerType.Room:
+			loadData.MovedNetworkObjects = new NetworkObject[] {networkObject};
+			loadData.ReplaceScenes = ReplaceOption.OnlineOnly;
+			break;
+			case TriggerType.Minigame:
+			loadData.Options.AllowStacking = true;
+			loadData.Options.LocalPhysics = LocalPhysicsMode.Physics2D;
+
+			break;
+
+			default:
+			break;
+		}
 		InstanceFinder.SceneManager.LoadConnectionScenes(networkObject.Owner,loadData);
 
 
@@ -40,6 +64,6 @@ public class Trigger : MonoBehaviour
 	private void ActivateTrigger(NetworkObject networkObject)
 	{
 		if(!networkObject.Owner.IsActive) return;
-		JoinRoom(networkObject,sceneName);
+		LoadScene(networkObject,sceneName);
 	}
 }

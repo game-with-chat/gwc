@@ -168,8 +168,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3272807101462473041, guid: 0e559f9ca5018c7bbaef21f81676049f, type: 3}
+      propertyPath: _scenePathHash
+      value: 43949293
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272807101462473041, guid: 0e559f9ca5018c7bbaef21f81676049f, type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 188760776408556998
+      value: 188760777609244299
       objectReference: {fileID: 0}
     - target: {fileID: 4009112124449735719, guid: 0e559f9ca5018c7bbaef21f81676049f, type: 3}
       propertyPath: m_Name
@@ -284,7 +288,7 @@ GameObject:
   - component: {fileID: 1080443710}
   m_Layer: 0
   m_Name: World
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -439,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: dev2
+  type: 0
 --- !u!1 &1706261099
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: dev3
+  type: 0
 --- !u!65 &2059080558
 BoxCollider:
   m_ObjectHideFlags: 0
