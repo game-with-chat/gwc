@@ -1,4 +1,3 @@
-using System;
 using FishNet.Managing;
 using FishNet.Transporting;
 using FishNet.Transporting.Multipass;
@@ -34,6 +33,22 @@ public class MainMenu : MonoBehaviour
 
 	#endregion
 
+
+    private string[] colors = { "Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "White", "Black", "Brown" };
+    private string[] adjectives = { "Fierce", "Majestic", "Graceful", "Radiant", "Mysterious", "Energetic", "Elegant", "Noble", "Powerful", "Agile" };
+    private string[] animals = { "Dragon", "Eagle", "Gazelle", "Lion", "Panther", "Tiger", "Flamingo", "Wolf", "Bear", "Cheetah" };
+
+    private string GenerateUsername()
+    {
+        string color = colors[Random.Range(0, colors.Length)];
+        string adjective = adjectives[Random.Range(0, adjectives.Length)];
+        string animal = animals[Random.Range(0, animals.Length)];
+
+        return color+adjective+animal;
+    }
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -56,18 +71,21 @@ public class MainMenu : MonoBehaviour
 		networkManager.ServerManager.OnServerConnectionState += OnServerState;
 
 
-		UsernameManager.OnReady += SetUsername;
+		GameManager.OnReady += SetUsername;
 
 
 		menu.enabled = true;
 		gameInterface.enabled = false;
+
+
+		nicknameField.text = GenerateUsername();
 
     }
 
 	private void SetUsername()
 	{
 		Debug.Log("Event Called");
-		UsernameManager.SetUsername(username);
+		GameManager.SetUsername(username);
 	}
 
 	private void OnClientState(ClientConnectionStateArgs args)
