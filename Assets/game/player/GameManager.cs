@@ -78,7 +78,6 @@ public class GameManager : NetworkBehaviour {
 		public int id;
 		public string room,message;
 	}
-
 	public void HUD_SendChat(TMP_InputField playerMessage) {
 		string message = playerMessage.text;
 		message = Regex.Replace(message,@"[0-9]","");
@@ -86,7 +85,6 @@ public class GameManager : NetworkBehaviour {
 		if(message.Length == 0) return;
 
 		base.ClientManager.Broadcast(new ChatMessage {
-			id = base.OwnerId,
 			message = message
 		});
 
@@ -95,6 +93,7 @@ public class GameManager : NetworkBehaviour {
 
 	public void SERVER_OnChat(NetworkConnection connection, ChatMessage message, Channel channel) {
 		NetworkObject networkObject = connection.FirstObject;
+		message.id = connection.ClientId;
 		if(networkObject == null) return;
 		base.ServerManager.Broadcast<ChatMessage>(networkObject,message,true);
 	}

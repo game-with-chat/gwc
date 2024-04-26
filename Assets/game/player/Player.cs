@@ -1,13 +1,8 @@
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Component.Transforming;
-using System;
 using TMPro;
-using FishNet.Connection;
-using FishNet;
-using FishNet.Broadcast;
 using FishNet.Transporting;
-using UnityEditor.MemoryProfiler;
 
 [RequireComponent(typeof(PointClickControler))]
 [RequireComponent(typeof(CharacterController))]
@@ -36,7 +31,8 @@ public class Player : NetworkBehaviour  {
 
 	private void OnChat(GameManager.ChatMessage chat, Channel channel)
 	{
-		GetComponentInChildren<ChatBalloon>().Chat(chat.message);
+
+		if(chat.id == base.OwnerId) GetComponentInChildren<ChatBalloon>().Chat(chat.message);
 	}
 
 	public override void OnStartClient()

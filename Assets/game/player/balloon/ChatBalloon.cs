@@ -51,7 +51,7 @@ public class ChatBalloon : MonoBehaviour
 		}
 		else
 		{
-			//setEnabled(false);
+			setEnabled(false);
 		}
 	}
 
