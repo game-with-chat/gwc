@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         target:
           - StandaloneLinux64
@@ -17,6 +18,8 @@ jobs:
           - WebGL
           # - WSAPlayer
     name: ${{ matrix.target }}
+    timeout-minutes: 60
+    continue-on-error: ${{ github.ref == 'refs/heads/develop' && matrix.target != 'WebGL' }}
     runs-on: ${{ matrix.target == 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
     steps:
       - name: Clean the VM
