@@ -18,7 +18,7 @@ jobs:
           - WebGL
           # - WSAPlayer
     name: ${{ matrix.target }}
-    timeout-minutes: 60
+    timeout-minutes: 30
     continue-on-error: ${{ github.ref == 'refs/heads/develop' && matrix.target != 'WebGL' }}
     runs-on: ${{ matrix.target == 'StandaloneOSX' && 'macos-latest' || 'ubuntu-latest' }}
     steps:
