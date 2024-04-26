@@ -71,7 +71,7 @@ public class MainMenu : MonoBehaviour
 		networkManager.ServerManager.OnServerConnectionState += OnServerState;
 
 
-		UsernameManager.OnReady += SetUsername;
+		GameManager.OnReady += SetUsername;
 
 
 		menu.enabled = true;
@@ -85,7 +85,7 @@ public class MainMenu : MonoBehaviour
 	private void SetUsername()
 	{
 		Debug.Log("Event Called");
-		UsernameManager.SetUsername(username);
+		GameManager.SetUsername(username);
 	}
 
 	private void OnClientState(ClientConnectionStateArgs args)
