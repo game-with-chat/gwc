@@ -3,6 +3,8 @@ using FishNet.Object;
 using FishNet.Component.Transforming;
 using TMPro;
 using FishNet.Transporting;
+using JetBrains.Annotations;
+using FishNet.Object.Synchronizing;
 
 [RequireComponent(typeof(PointClickControler))]
 [RequireComponent(typeof(CharacterController))]
@@ -14,6 +16,12 @@ public class Player : NetworkBehaviour  {
 	private TextMeshProUGUI usernameText;
 
 	private ChatBalloon chatBubble;
+	
+
+	[SerializeField]
+	private Transform headSlot;
+	[SerializeField]
+	private GameObject testItem;
 
 
 	private void UpdateUsername() {
@@ -57,5 +65,11 @@ public class Player : NetworkBehaviour  {
 		GameManager.OnUsernameChange -= OnUsernameChange;
 	}
 
-
+	private void Update() {
+		if(Input.GetButtonDown("Submit")) {
+			Debug.Log("FDFDSFDSF");
+			// testItem.transform.SetParent(headSlot);
+			Instantiate(testItem,headSlot);
+		}
+	}
 }

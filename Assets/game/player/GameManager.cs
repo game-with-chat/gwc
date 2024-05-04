@@ -7,11 +7,14 @@ using TMPro;
 using FishNet.Broadcast;
 using FishNet.Transporting;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 
 public class GameManager : NetworkBehaviour {
 	public static event Action OnReady;
 	private static GameManager gameManager;
+
+
 
 
 	private void Awake() {
@@ -98,4 +101,5 @@ public class GameManager : NetworkBehaviour {
 		base.ServerManager.Broadcast<ChatMessage>(networkObject,message,true);
 	}
 	#endregion
+
 }

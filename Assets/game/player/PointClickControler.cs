@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent),typeof(PlayerInput))]
 public class PointClickControler : MonoBehaviour
 {
-
 	public float speed = 5;
 	private NavMeshAgent navMesh;
 
@@ -19,7 +19,7 @@ public class PointClickControler : MonoBehaviour
 
 	private bool mouseHit(out Vector3 mouseClickPos)
 	{
-		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray mouseRay = Camera.main.ScreenPointToRay( Pointer.current.position.ReadValue());
 		RaycastHit mouseClickImpact;
 		if (Physics.Raycast(mouseRay, out mouseClickImpact))
 		{
@@ -33,7 +33,11 @@ public class PointClickControler : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("GoHere") && mouseHit(out Vector3 newPosition))
+	}
+
+	public void OnGoHere(InputAction.CallbackContext context) {
+		
+		if (mouseHit(out Vector3 newPosition))
 		{
 			newPosition.y = transform.position.y; // No Pecking at the ground
 
@@ -44,4 +48,5 @@ public class PointClickControler : MonoBehaviour
 			transform.rotation = Quaternion.LookRotation(direction);
 		}
 	}
+
 }
