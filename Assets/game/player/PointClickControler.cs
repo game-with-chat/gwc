@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NavMeshAgent),typeof(PlayerInput))]
@@ -21,7 +22,7 @@ public class PointClickControler : MonoBehaviour
 	{
 		Ray mouseRay = Camera.main.ScreenPointToRay( Pointer.current.position.ReadValue());
 		RaycastHit mouseClickImpact;
-		if (Physics.Raycast(mouseRay, out mouseClickImpact))
+		if (!EventSystem.current.IsPointerOverGameObject()&&Physics.Raycast(mouseRay, out mouseClickImpact))
 		{
 			mouseClickPos = mouseClickImpact.point;
 			return true;
@@ -36,6 +37,7 @@ public class PointClickControler : MonoBehaviour
 	}
 
 	public void OnGoHere(InputAction.CallbackContext context) {
+		
 		
 		if (mouseHit(out Vector3 newPosition))
 		{

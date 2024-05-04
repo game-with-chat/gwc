@@ -57,6 +57,7 @@ public class Player : NetworkBehaviour  {
 		//Events
 		GameManager.OnUsernameChange += OnUsernameChange;
 		base.ClientManager.RegisterBroadcast<GameManager.ChatMessage>(OnChat);
+			Instantiate(testItem,headSlot);
 	}
 
 	public override void OnStopClient()
@@ -65,11 +66,14 @@ public class Player : NetworkBehaviour  {
 		GameManager.OnUsernameChange -= OnUsernameChange;
 	}
 
+	public void Wear(Transform toWear) {
+		toWear.SetParent(headSlot);
+	}
+
 	private void Update() {
-		if(Input.GetButtonDown("Submit")) {
-			Debug.Log("FDFDSFDSF");
-			// testItem.transform.SetParent(headSlot);
-			Instantiate(testItem,headSlot);
-		}
+		// if(Input.GetButtonDown("Submit")) {
+		// 	Debug.Log("FDFDSFDSF");
+		// 	// testItem.transform.SetParent(headSlot);
+		// }
 	}
 }
