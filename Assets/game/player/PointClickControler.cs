@@ -36,8 +36,7 @@ public class PointClickControler : MonoBehaviour
 	{
 	}
 
-	public void OnGoHere(InputAction.CallbackContext context) {
-		
+	public void OnGoHere(InputAction.CallbackContext context) {		
 		
 		if (mouseHit(out Vector3 newPosition))
 		{

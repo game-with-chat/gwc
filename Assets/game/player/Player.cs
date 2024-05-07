@@ -7,10 +7,12 @@ using JetBrains.Annotations;
 using FishNet.Object.Synchronizing;
 using System;
 using GameKit.Dependencies.Utilities;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PointClickControler))]
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NetworkTransform))]
+[RequireComponent(typeof(PlayerInput))]
 public class Player : NetworkBehaviour  {
 
 
@@ -35,6 +37,7 @@ public class Player : NetworkBehaviour  {
 		base.OnStartClient();
 		GetComponent<PointClickControler>().enabled = base.IsOwner;
 		GetComponent<AudioListener>().enabled = base.IsOwner;
+		GetComponent<PlayerInput>().enabled = base.IsOwner;
 		if(base.IsOwner) {
 			Player.current = this;
 		}
