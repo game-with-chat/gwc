@@ -84,7 +84,6 @@ public class MainMenu : MonoBehaviour
 
 	private void SetUsername()
 	{
-		Debug.Log("Event Called");
 		GameManager.SetUsername(username);
 	}
 

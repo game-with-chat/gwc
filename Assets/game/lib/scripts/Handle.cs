@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(Collider))]
+// [RequireComponent(typeof(Collider))]
 public class Handle : MonoBehaviour, IBeginDragHandler, IDragHandler {
 	[SerializeField]
 	private Transform thingToMove;

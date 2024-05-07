@@ -15,11 +15,11 @@ using JetBrains.Annotations;
 
 public class GameManager : NetworkBehaviour {
 	public static event Action OnReady;
-	private static GameManager gameManager;
+	private static GameManager current;
 
 
 	private void Awake() {
-		gameManager = this;
+		current = this;
 		usernames.OnChange += InvokeUsernameChange;
 	}
 
@@ -33,6 +33,7 @@ public class GameManager : NetworkBehaviour {
 	{
 		base.OnStartServer();
 		base.ServerManager.RegisterBroadcast<ChatMessage>(SERVER_OnChat);
+		// base.ServerManager.RegisterBroadcast<ItemMessage>(SERVER_OnItem);
 	}
 	public override void OnStopServer()
 	{
@@ -64,11 +65,11 @@ public class GameManager : NetworkBehaviour {
 
 	[Client]
 	public static void SetUsername(string username=null) {
-		gameManager.SetUsername(username);
+		current.SetUsername(username);
 	}
 
 	public static string GetUsername(int id) {
-		if(gameManager.usernames.TryGetValue(id,out string result))
+		if(current.usernames.TryGetValue(id,out string result))
 			return result;
 		else
 			return "player";
@@ -102,5 +103,27 @@ public class GameManager : NetworkBehaviour {
 		base.ServerManager.Broadcast<ChatMessage>(networkObject,message,true);
 	}
 	#endregion
+
+#region Items
+
+	// public struct ItemMessage: IBroadcast {
+	// 	public int id;
+	// }
+	public void HUD_WearHat() {
+		Player.current.WearHat();
+		// base.ClientManager.Broadcast(new ItemMessage {
+		// });
+	}
+
+	// public void SERVER_OnItem(NetworkConnection connection, ItemMessage message, Channel channel){
+	// 	NetworkObject networkObject = connection.FirstObject;
+	// 	message.id = connection.ClientId;
+	// 	if(networkObject == null) return;
+	// }
+
+
+	
+#endregion
+
 
 }

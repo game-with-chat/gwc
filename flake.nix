@@ -48,7 +48,7 @@
 				bison
 				flex
 				lzop
-				python
+				python3
 			];
   profile = ''
     export ALLOW_NINJA_ENV=true
