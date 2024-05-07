@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: -2328595969687404552}
   - component: {fileID: 5774081365854586479}
   - component: {fileID: 3376500191779610277}
+  - component: {fileID: 1291070916532163105}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -94,6 +95,8 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1806177640827727253}
   _networkObjectCache: {fileID: 1806177640827727253}
   usernameText: {fileID: 1740650714931397255}
+  headSlot: {fileID: 2916167296402567821}
+  testItem: {fileID: 1847040755341884247, guid: e77b9d776b5170042aaf42b2f6ffddb5, type: 3}
 --- !u!114 &1806177640827727253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +269,56 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496160074068802337}
   m_Enabled: 1
+--- !u!114 &1291070916532163105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496160074068802337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 883253f3993e05c4aa29aa0417edd245, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7173881789718695963}
+        m_TargetAssemblyTypeName: PointClickControler, Assembly-CSharp
+        m_MethodName: OnGoHere
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4059d709-2116-4546-b5bc-70af4a422afe
+    m_ActionName: 'overworld/GoHere[/Mouse/press]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96037a2b-cfab-4459-a7e0-c860aa7762bc
+    m_ActionName: 'player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1750283503127054792
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +349,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2916167296402567821}
   m_Father: {fileID: 3924290198350621154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1017044989239631365
@@ -456,6 +510,37 @@ MonoBehaviour:
   textBox: {fileID: 4130105820497129353}
   margin: 0.1
   balloonLifespan: 5
+--- !u!1 &5016633607269775670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2916167296402567821}
+  m_Layer: 0
+  m_Name: HEAD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2916167296402567821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016633607269775670}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 13207109337467606}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5465499178558362564
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,5 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/breakout/breakout.unity
     guid: e69f0624599fb6537a61edbb67921d06
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: cf1308b516d07228b93cfb3337aded9f, type: 2}
   m_UseUCBPForAssetBundles: 0
