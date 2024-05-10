@@ -21,7 +21,9 @@ public class MainMenu : MonoBehaviour
 
 #region GameObjects
 	[SerializeField]
-	public Toggle sslToggle;
+	private Toggle sslToggle;
+	[SerializeField]
+	private GameObject sslContainer;
 	[SerializeField]
 	private  TMP_InputField nicknameField, addressField, portField;
 	[SerializeField]
@@ -61,7 +63,7 @@ public class MainMenu : MonoBehaviour
 		hostButton.gameObject.SetActive(false);
 		#else
 		multipass.SetClientTransport<Tugboat>();
-		sslToggle.gameObject.SetActive(false);
+		sslContainer.SetActive(false);
 		#endif
 
 		addressField.text = ip;

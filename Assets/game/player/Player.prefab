@@ -53,7 +53,6 @@ GameObject:
   - component: {fileID: -280231859144208281}
   - component: {fileID: -2328595969687404552}
   - component: {fileID: 5774081365854586479}
-  - component: {fileID: 3376500191779610277}
   - component: {fileID: 1291070916532163105}
   m_Layer: 0
   m_Name: Player
@@ -261,14 +260,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!81 &3376500191779610277
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496160074068802337}
-  m_Enabled: 1
 --- !u!114 &1291070916532163105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,8 +717,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3fe2c6f5cf20c6099fa58d07f3ca589, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: a3fe2c6f5cf20c6099fa58d07f3ca589, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
