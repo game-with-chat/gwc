@@ -36,7 +36,7 @@ public class Player : NetworkBehaviour  {
 	{
 		base.OnStartClient();
 		GetComponent<PointClickControler>().enabled = base.IsOwner;
-		GetComponent<AudioListener>().enabled = base.IsOwner;
+		// GetComponent<AudioListener>().enabled = base.IsOwner;
 		GetComponent<PlayerInput>().enabled = base.IsOwner;
 		if(base.IsOwner) {
 			Player.current = this;
