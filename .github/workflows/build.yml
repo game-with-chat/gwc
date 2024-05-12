@@ -17,7 +17,7 @@ jobs:
           - Android
           - WebGL
           # - WSAPlayer
-          - LinuxHeadlessSimulation
+          - Server
     name: ${{ matrix.target }}
     timeout-minutes: 60
     continue-on-error: ${{ github.ref == 'refs/heads/develop' && matrix.target != 'WebGL' }}
@@ -58,8 +58,9 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
          buildName: gwc
-         targetPlatform: ${{ matrix.target }}
+         targetPlatform: ${{ matrix.target == "Server" && "StandaloneLinux64" || matrix.target }}
          allowDirtyBuild: true
+         customParameters: {{ matrix.target == "Server" && "-standaloneBuildSubtarget Server" || "" }}
 
       - uses: actions/upload-artifact@v4
         name: "Upload ${{ matrix.target == 'Android' && 'Android Package (.apk)' || matrix.target == 'StandaloneOSX' && 'Bundle (.app)' || matrix.target == 'WebGL' && 'Web Client Archive' || 'Executable' }}"
