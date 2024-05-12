@@ -60,7 +60,7 @@ jobs:
          buildName: gwc
          targetPlatform: ${{ matrix.target == "Server" && "StandaloneLinux64" || matrix.target }}
          allowDirtyBuild: true
-         customParameters: ${{ matrix.target == "Server" && "-standaloneBuildSubtarget Server" || "" }}
+         customParameters: ${{ matrix.target == 'Server" && '-standaloneBuildSubtarget Server' || '' }}
 
       - uses: actions/upload-artifact@v4
         name: "Upload ${{ matrix.target == 'Android' && 'Android Package (.apk)' || matrix.target == 'StandaloneOSX' && 'Bundle (.app)' || matrix.target == 'WebGL' && 'Web Client Archive' || 'Executable' }}"
