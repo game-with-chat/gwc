@@ -69,7 +69,7 @@ jobs:
         if: matrix.target != 'WebGL' || github.ref != 'refs/heads/develop'
         id: upload
         with:
-          name: ${{matrix.target}}${{matrix.type=="Server"&&"-server"||""}}
+          name: ${{matrix.target}}${{ matrix.type == 'Server' && '-server' || '' }}
           path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk'  || matrix.target == 'WebGL' && '/gwc' || '' }}
 
       - uses: actions/upload-pages-artifact@v2
