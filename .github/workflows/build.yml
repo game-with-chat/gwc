@@ -8,6 +8,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        type:
+         - Player
+         - Server
         target:
           - StandaloneLinux64
           - StandaloneWindows64
@@ -57,15 +60,16 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
          buildName: gwc
-         targetPlatform: ${{ matrix.target }}
          allowDirtyBuild: true
+         targetPlatform: ${{ matrix.target }}
+         customParameters: -standaloneBuildSubtarget ${{ matrix.type }}
 
       - uses: actions/upload-artifact@v4
         name: "Upload ${{ matrix.target == 'Android' && 'Android Package (.apk)' || matrix.target == 'StandaloneOSX' && 'Bundle (.app)' || matrix.target == 'WebGL' && 'Web Client Archive' || 'Executable' }}"
         if: matrix.target != 'WebGL' || github.ref != 'refs/heads/develop'
         id: upload
         with:
-          name: ${{matrix.target}}
+          name: ${{matrix.target}}${{ matrix.type == 'Server' && '-server' || '' }}
           path: build/${{matrix.target}}${{ matrix.target == 'Android' && '/gwc.apk'  || matrix.target == 'WebGL' && '/gwc' || '' }}
 
       - uses: actions/upload-pages-artifact@v2
